@@ -9,9 +9,12 @@ Output (JSON):
     {"scores": [3.5, 3.5, 4.0, 3.8, 4.1, 3.9, 4.1, 4.0], "normalized_score": 0.8749, "percentile": 99.31}
 """
 import json
+import os
 import sys
 import numpy as np
 from scipy.stats import percentileofscore
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 SCORE_DIMENSIONS = [
@@ -20,7 +23,8 @@ SCORE_DIMENSIONS = [
 ]
 
 
-def load_fixed_parameters(path="fixed_parameters.json"):
+def load_fixed_parameters():
+    path = os.path.join(SCRIPT_DIR, "fixed_parameters.json")
     with open(path, "r") as f:
         return json.load(f)
 
